@@ -7,6 +7,10 @@ use Core\Database; */
 
 class UsersController extends Controller
 {
+    public function index()
+    {
+        echo 'Hello from UsersController';
+    }
     public function listUsers()
     {
         $query = $this->database->read('SELECT * FROM usuario', ''); // fetch all posts
@@ -19,6 +23,7 @@ class UsersController extends Controller
     public function login()
     {
         $data = json_decode(file_get_contents('php://input'), true);
+        //echo $this->json->encode($data);
         $email = $data['email'];
         $password = $data['password'];
         //var_dump($data);
@@ -34,8 +39,9 @@ class UsersController extends Controller
     public function register()
     {
         $data = json_decode(file_get_contents('php://input'), true);
+        echo $this->json->encode($data);
 
-        $email = $data['email'];
+        /* $email = $data['email'];
         $password = $data['password'];
         $name = $data['name'];
 
@@ -44,6 +50,6 @@ class UsersController extends Controller
             echo $this->json->encode(['message' => 'Usuario registrado correctamente.']);
         } catch (\PDOException $e) {
             echo $this->json->encode(['message' => 'Error al registrar usuario.', 'error' => $e->getMessage()]);
-        }
+        } */
     }
 }

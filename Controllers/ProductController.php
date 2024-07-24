@@ -9,7 +9,7 @@ class ProductController extends Controller
     {
         $query = $this->database->read('SELECT * FROM producto', []); // fetch all posts
         if (count($query) > 0) {
-            echo $this->json->encode(['productos' => array($query)]);
+            echo $this->json->encode($query);
         } else {
             echo $this->json->encode(['message' => 'No hay productos disponibles.']);
         }

@@ -6,7 +6,7 @@ define('DB_PASS', '');
 define('API_KEY', '');
 
 // public data
-define('APP_PUBLIC_URL', 'http://localhost:3000');
+define('APP_PUBLIC_URL', '*');
 define('APP_VERSION', '1.0');
 
 define('APP_MODE', 'dev'); // dev, prod

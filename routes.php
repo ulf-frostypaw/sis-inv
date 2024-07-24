@@ -1,10 +1,10 @@
 <?php
 
-$router->get('/home', ['UsersControllers', 'listUsers']);
-$router->post('/login', ['UsersControllers', 'login']);
-$router->post('/register', ['UsersControllers', 'register']);
+$router->get('/home', ['UsersController', 'index']);
+$router->post('/login', ['UsersController', 'login']);
+$router->post('/register', ['UsersController', 'register']);
 
-$router->post('/listProducts', ['ProductController', 'listProduct']);
+$router->get('/listProducts', ['ProductController', 'listProduct']);
 /* $router->get('/posts/:id', function($params){
     $slug = $params['id'];
     $slugParts = explode('/', $slug);

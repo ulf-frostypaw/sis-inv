@@ -31,6 +31,21 @@ class Router{
     }
 
     public function dispatch($method, $uri){
+        // Manejo de la solicitud OPTIONS
+        if ($method === 'OPTIONS') {
+            header('Access-Control-Allow-Origin: *');
+            header('Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS');
+            header('Access-Control-Allow-Headers: Content-Type, Authorization');
+            header('HTTP/1.1 204 No Content');
+            exit; // Termina la ejecución para no procesar más
+        }
+    
+        // Verificar si hay rutas definidas para el método
+        if (!isset($this->routes[$method])) {
+            $this->notFound();
+            return;
+        }
+    
         foreach($this->routes[$method] as $route => $data){
             $pattern = '@^' . preg_replace('/\\\:[a-zA-Z]+/', '([^/]+)', preg_quote($route)) . '\/?$@D';
             if(preg_match($pattern, $uri, $matches)){
@@ -38,7 +53,7 @@ class Router{
                 foreach($data['params'] as $param){
                     $params[$param] = array_shift($matches);
                 }
-
+    
                 // Verificar si el callback es un array y llamar al controlador y método correspondientes
                 if(is_array($data['callback']) && count($data['callback']) == 2){
                     $controller = $data['callback'][0];
@@ -47,7 +62,7 @@ class Router{
                 } else {
                     $data['callback']($params);
                 }
-
+    
                 return;
             }
         }

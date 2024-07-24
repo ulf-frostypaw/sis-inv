@@ -2,6 +2,7 @@
 
 require_once __DIR__ . '/Config/constants.php';
 require_once __DIR__ . '/Config/database.php';
+require_once __DIR__ . '/Config/middlewares.php';
 //require_once __DIR__ . '/Controllers/HomeController.php';
 
 spl_autoload_register(function ($className) {
@@ -16,7 +17,11 @@ use Core\Router;
 use Core\Middleware;
 
 // Load all middlewares
-Middleware::load();
+//Middleware::load();
+
+header("Access-Control-Allow-Origin: *");
+        header("Access-Control-Allow-Methods: GET, POST, OPTIONS, PUT, DELETE");
+        header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization");
 
 $router = new Router();
 require_once __DIR__ . '/routes.php';
