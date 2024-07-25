@@ -5,6 +5,16 @@ namespace Controllers;
 
 class ProductController extends Controller
 {
+    public function listOneProduct($params){
+        $productParts = explode('/', $params['id']);
+        
+        $query = $this->database->read('SELECT * FROM producto WHERE id_producto = ?', [$productParts[2]]); // fetch all posts
+        if (count($query) > 0) {
+            echo $this->json->encode($query);
+        } else {
+            echo $this->json->encode(['message' => 'No hay productos disponibles.']);
+        }
+    }
     public function listProduct()
     {
         $query = $this->database->read('SELECT * FROM producto', []); // fetch all posts

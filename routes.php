@@ -5,13 +5,12 @@ $router->post('/login', ['UsersController', 'login']);
 $router->post('/register', ['UsersController', 'register']);
 
 $router->get('/listProducts', ['ProductController', 'listProduct']);
-/* $router->get('/posts/:id', function($params){
-    $slug = $params['id'];
-    $slugParts = explode('/', $slug);
-    $slug = $slugParts[2];
-    HomeController::post($slug);
-}); */
+$router->get('/listProducts/:id',  ['ProductController', 'listOneProduct']);
+$router->post('/addProduct', ['ProductController', 'addProduct']);
+$router->put('/updateProduct', ['ProductController', 'updateProduct']);
+$router->delete('/deleteProduct', ['ProductController', 'deleteProduct']);
 
+$router->post('/apartarProducto', ['ApartadoController', 'apartar']);
 
 // TODO: Arreglar parametros para lectura en array
 $router->get('/users/:username', function($params){
