@@ -1,18 +1,22 @@
 <?php
 
-$router->get('/home', ['UsersController', 'index']);
+$router->get('/', ['UsersController', 'home']);
 $router->post('/login', ['UsersController', 'login']);
 $router->post('/register', ['UsersController', 'register']);
 
 //users
 $router->get('/listUsers', ['UsersController', 'listUsers']);
+$router->post('/createUser', ['UsersController', 'createUser']);
+$router->post('/getUserData', ['UsersController', 'getUserData']);
+$router->post('/updateUser', ['UsersController', 'updateUser']);
+$router->post('/deleteUser', ['UsersController', 'deleteUser']);
 
 // products
 $router->get('/listProducts', ['ProductController', 'listProduct']);
 $router->get('/listProducts/:id',  ['ProductController', 'listOneProduct']);
 $router->post('/addProduct', ['ProductController', 'addProduct']);
-$router->put('/updateProduct', ['ProductController', 'updateProduct']);
-$router->delete('/deleteProduct', ['ProductController', 'deleteProduct']);
+$router->post('/updateProduct', ['ProductController', 'updateProduct']);
+$router->post('/deleteProduct', ['ProductController', 'deleteProduct']);
 $router->post('/apartarProducto', ['ApartadoController', 'apartar']);
 
 // Users 

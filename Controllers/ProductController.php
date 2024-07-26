@@ -28,19 +28,19 @@ class ProductController extends Controller
     {
 
         $data = json_decode(file_get_contents('php://input'), true);
-        $nameProduct = $data['nameProduct'];
-        // $descriptionProduct = $data['descriptionProduct'];
+        $nameProduct = $data['nombre_producto'];
+        $descriptionProduct = $data['descripcion'];
         $stock = $data['stock'];
-        $costPrice = $data['costPrice'];
-        $costSale = $data['costSale'];
-        $category = $data['category'];
+        $costPrice = $data['precio_costo'];
+        $costSale = $data['precio_venta'];
+        $category = $data['categoria'];
 
         try {
-            $query = $this->database->create('INSERT INTO producto (nombre_producto, stock, precio_costo, precio_venta, categoria) VALUES (?, ?, ?, ?, ?)', [$nameProduct, $stock, $costPrice, $costSale, $category]); // fetch all posts
+            $query = $this->database->create('INSERT INTO producto (nombre_producto, stock,descripcion, precio_costo, precio_venta, categoria) VALUES (?, ?, ?, ?, ?, ?)', [$nameProduct, $stock, $descriptionProduct,  $costPrice, $costSale, $category]); // fetch all posts
 
-            return $this->json->encode(['message' => 'Producto registrado correctamente.']);
+            return $this->json->encode(['status' => 200, 'message' => 'Producto registrado correctamente.']);
         } catch (\PDOException $th) {
-            return $this->json->encode(['message' => 'Error al registrar producto.', 'error' => $th->getMessage()]);
+            return $this->json->encode(['status' => 400, 'message' => 'Error al registrar producto.', 'error' => $th->getMessage()]);
         }
     }
 
@@ -48,10 +48,10 @@ class ProductController extends Controller
     { // esto retorna el producto unico
         try {
             $data = json_decode(file_get_contents('php://input'), true);
-            $this->database->update('UPDATE producto SET nombre_producto = ?, stock = ?, precio_costo = ?, precio_venta = ?, categoria = ? WHERE id_producto = ?', [$data['nameProduct'], $data['stock'], $data['costPrice'], $data['costSale'], $data['category'], $data['id_producto']]);
-            return $this->json->encode(['message' => 'Producto actualizado correctamente.']);
+            $this->database->update('UPDATE producto SET nombre_producto = ?, stock = ?, precio_costo = ?, precio_venta = ?, categoria = ? WHERE id_producto = ?', [$data['nombre_producto'], $data['stock'], $data['precio_costo'], $data['precio_venta'], $data['categoria'], $data['id_producto']]);
+            return $this->json->encode(['status' => 200, 'message' => 'Producto actualizado correctamente.']);
         } catch (\PDOException $th) {
-            return $this->json->encode(['message' => 'Sucedió un error al intentar actualizar el producto.', 'error' => $th->getMessage()]);
+            return $this->json->encode(['status' => 400 , 'message' => 'Sucedió un error al intentar actualizar el producto.', 'error' => $th->getMessage()]);
         }
     }
 
@@ -59,11 +59,12 @@ class ProductController extends Controller
     public function deleteProduct()
     {
         try {
-            $this->database->delete("DELETE FROM producto WHERE id_producto = ?", ['id_producto']);
-            return $this->json->encode(['message' => 'Producto eliminado correctamente.']);
+            $data = json_decode(file_get_contents('php://input'), true);
+            $this->database->delete("DELETE FROM producto WHERE id_producto = ?", [$data['id']]);
+            return $this->json->encode(['status' => 200, 'message' => 'Producto eliminado correctamente.']);
 
         } catch (\Throwable $th) {
-            return $this->json->encode(['message' => 'Error al eliminar producto.', 'error' => $th->getMessage()]);
+            return $this->json->encode(['status' => 400, 'message' => 'Error al eliminar producto.', 'error' => $th->getMessage()]);
         }
     }
 
