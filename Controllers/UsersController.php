@@ -136,7 +136,7 @@ class UsersController extends Controller
             return;
         }
 
-        $query = $this->database->read('SELECT id_tipo_usuario, nombre_completo, correo_usuario FROM usuario WHERE correo_usuario = ? AND contrasena = ?', [$email, $password]); // fetch all posts (id_tipo_usuario, nombre_completo, correo_usuario)
+        $query = $this->database->read('SELECT id_tipo_usuario, id_usuario, nombre_completo, correo_usuario FROM usuario WHERE correo_usuario = ? AND contrasena = ?', [$email, $password]); // fetch all posts (id_tipo_usuario, nombre_completo, correo_usuario)
         if (count($query) > 0) {
             echo $this->json->encode(['status' => 200, 'data' => $query]);
         } else {
