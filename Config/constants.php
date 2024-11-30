@@ -8,7 +8,7 @@ define('API_KEY', '');
 // public data
 define('APP_PUBLIC_URL', '*');
 define('APP_VERSION', '1.0');
-
+/* 
 define('APP_MODE', 'dev'); // dev, prod
 
 
@@ -22,10 +22,9 @@ if (APP_MODE === 'dev') {
     ini_set('display_errors', 0);
     ini_set('display_startup_errors', 0);
     error_reporting(0);
-}
+} */
 
 /* 
-<?php
 define('DB_HOST', 'localhost');
 define('DB_NAME', 'clima_polar');
 define('DB_USER', 'root');
@@ -37,9 +36,9 @@ define('APP_PUBLIC_URL', '*');
 define('APP_VERSION', '1.0');
 
 define('APP_MODE', 'dev'); // dev, prod
+ */
 
-
-if (APP_MODE === 'dev') {
+/* if (APP_MODE === 'dev') {
     ini_set('display_errors', 1);
     ini_set('display_startup_errors', 1);
     error_reporting(E_ALL);
@@ -49,5 +48,4 @@ if (APP_MODE === 'dev') {
     ini_set('display_errors', 0);
     ini_set('display_startup_errors', 0);
     error_reporting(0);
-}
- */
+} */

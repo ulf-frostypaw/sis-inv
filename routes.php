@@ -17,7 +17,12 @@ $router->get('/listProducts/:id',  ['ProductController', 'listOneProduct']);
 $router->post('/addProduct', ['ProductController', 'addProduct']);
 $router->post('/updateProduct', ['ProductController', 'updateProduct']);
 $router->post('/deleteProduct', ['ProductController', 'deleteProduct']);
+
+// apartados
 $router->post('/apartarProducto', ['ApartadoController', 'apartar']);
+$router->get('/listApartados', ['ApartadoController', 'listApartados']);
+$router->post('/atenderApartado', ['ApartadoController', 'atenderApartado']);
+$router->post('/deleteApartado', ['ApartadoController', 'deleteApartado']);
 
 // Users 
 $router->get('/countData', ['UsersController', 'countData']);

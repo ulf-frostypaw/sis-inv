@@ -54,7 +54,7 @@ class UsersController extends Controller
                 echo $this->json->encode(['status' => 200, 'message' => 'Usuario creado correctamente.']);
             }
         } catch (\PDOException $e) {
-            echo $this->json->encode(['status' => 400, 'message' => 'Error al crear usuario.']);
+            echo $this->json->encode(['status' => 400, 'message' => 'Error al crear usuario.', $e->getMessage()]);
         }
     }
 
@@ -88,6 +88,11 @@ class UsersController extends Controller
                         case 3:
                             $user['rol'] = 'cliente';
                             break;
+
+
+                            case 4:
+                                $user['rol'] = 'secretaria';
+                                break;
                         default:
                             $user['rol'] = 'desconocido';
                             break;
